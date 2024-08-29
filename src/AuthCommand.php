@@ -125,16 +125,6 @@ class AuthCommand extends Command
             file_put_contents($controller, $this->compileStub('controllers/HomeController'));
         }
 
-        $baseController = app_path('Http/Controllers/Controller.php');
-
-        if (file_exists($baseController) && ! $this->option('force')) {
-            if ($this->components->confirm("The [Controller.php] file already exists. Do you want to replace it?", true)) {
-                file_put_contents($baseController, $this->compileStub('controllers/Controller'));
-            }
-        } else {
-            file_put_contents($baseController, $this->compileStub('controllers/Controller'));
-        }
-
         if (! file_exists(database_path('migrations/0001_01_01_000000_create_users_table.php'))) {
             copy(
                 __DIR__.'/../stubs/migrations/2014_10_12_100000_create_password_resets_table.php',
